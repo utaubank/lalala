@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- ★画面が表示される前にテーマを決定するスクリプト（チラつき防止） -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const osPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initialTheme = savedTheme || (osPrefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', initialTheme);
+        })();
+    </script>
+
+    <meta name="description" content="UTAU音源『正幻波ナノカ』の公式設定・プロフィール紹介ページです。ナノカに関する情報をお届けします。">
+    <link rel="icon" href="../logo/Sivefabi.ico?v=2">
+    <link rel="apple-touch-icon" href="../logo/Sivefabi.ico?v=2">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="正幻波ナノカ,正弦波ナノカ,ナノカ,UTAU音源配布,無生物UTAU音源配布,UTAU,OpenUTAU,Utaun,音源配布">
+    <title>正幻波ナノカ | Sive</title>
+    <style>
+        /* --- 変数定義 --- */
+        /* サイト内のすべての画像で「長押しメニュー」「テキスト選択」「ドラッグ」をまとめて無効化 */
+img {
+    -webkit-touch-callout: none; /* iOSの長押し保存メニューを無効化 */
+    -webkit-user-select: none;   /* iOS/Safariでの選択（青いカーソル）を無効化 */
+    -moz-user-select: none;      /* Firefoxでの選択防止 */
+    -ms-user-select: none;       /* IE/Edgeでの選択防止 */
+    user-select: none;           /* 標準の選択防止 */
+    -webkit-user-drag: none;     /* ドラッグ禁止 */
+}
+        :root {
+            /* ライトモード：ユマ指定カラーを厳守 */
+            --bg-color: #f4f7f9;
+            --container-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --sub-text: #555555;
+            --border-color: #eaeaea;
+            --header-color: #016068; /* ナノカ指定カラー */
+            --gmail-link: #002AFF;   
+            --sns-links: #002AFF;
+            --nav-bg: #f0f0f0;
+            --nav-border: #000000;  
+            --nav-text: #000000;
+        }
+
+        /* ダークモード */
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --text-color: #f0f0f0;
+            --sub-text: #b0b0b0;
+            --border-color: #333333;
+            --header-color: #50D8D8;
+            --gmail-link: #81d4fa;
+            --sns-links: #81d4fa;
+            --nav-bg: #1e1e1e;
+            --nav-border: #ffffff;  
+            --nav-text: #ffffff;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* --- ヘッダーナビゲーション（上部固定・ダークモード対応） --- */
+        .top-nav {
+            display: flex;
+            width: 100%;
+            border-top: 2px solid var(--nav-border);
+            border-bottom: 2px solid var(--nav-border);
+            box-sizing: border-box;
+            background-color: var(--nav-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .top-nav a {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+            text-decoration: none;
+            color: var(--nav-text);
+            font-weight: bold;
+            font-size: 0.85rem;
+            line-height: 1.2;
+            border-right: 1px solid var(--nav-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .top-nav a:last-child {
+            border-right: none;
+        }
+
+        /* アクティブボタン（ライトモード選択中の文字色） */
+        .top-nav a.active-nanoka {
+            background-color: var(--header-color);
+            color: #ffffff; 
+        }
+
+        /* アクティブボタン（ダークモード選択中の文字色） */
+        [data-theme="dark"] .top-nav a.active-nanoka {
+            color: #000000; 
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--container-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--header-color);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--header-color);
+            font-size: 1.25rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 1.2em;
+            background-color: var(--header-color);
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .profile-list {
+            list-style: none;
+            padding: 0;
+            font-size: 1.05rem;
+        }
+
+        .profile-list li {
+            margin-bottom: 12px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .profile-list strong {
+            color: var(--header-color);
+        }
+
+        .audio-section {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .story-text {
+            font-size: 1rem;
+            color: var(--text-color);
+            text-align: justify;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin: 50px 0;
+            text-decoration: none;
+            color: var(--header-color);
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--sub-text);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- SNSリンク：2列2行 --- */
+        .sns-links {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px 10px;
+          justify-items: center;
+          margin: 30px auto;
+          max-width: 320px;
+        }
+
+        .sns-links a {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-decoration: none;
+          color: var(--sns-links);
+          gap: 8px;
+          width: 100%;
+        }
+
+        .sns-links a img {
+          width: 45px;
+          height: 45px;
+          border-radius: 10px;
+          flex-shrink: 0;
+        }
+
+        .sns-links a span {
+          font-size: 0.7rem;
+          white-space: nowrap;
+          text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .container { margin: 20px 10px; padding: 20px; }
+            h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 固定ヘッダーメニュー -->
+<nav class="top-nav">
+  <a href="../index.html">ホーム</a>
+  <a href="../jack/">正弦波<br>ジャック</a>
+  <a href="./" class="active-nanoka">正幻波<br>ナノカ</a>
+  <a href="../sei/">虚音<br>セイ</a>
+  <a href="../rules/">利用規約</a>
+</nav>
+
+<main class="container">
+    <div style="display:flex; justify-content:flex-end; align-items:center; padding:10px 15px;">
+      <img src="../logo/Sive.png" alt="Siveロゴ" style="width:120px;">
+    </div>
+    <img src="../Image/Nanoka.JPG" alt="正幻波ナノカの立ち絵" class="main-img" width="480" height="854">
+
+        <h2 style="text-align: left;"><img src="../logo/NanokaLogo.png" alt="正幻波ナノカ" style="max-width: 200px; width: 100%; height: auto; vertical-align: middle;"></h2>
+    
+    <h3>プロフィール</h3>
+    <ul class="profile-list">
+        <li><strong>名前：</strong>正幻波ナノカ</li>
+        <li><strong>年齢：</strong>12歳</li>
+        <li><strong>血液型・MBTI：</strong>あなた次第です</li>
+        <li><strong>誕生日：</strong>あなたと出会った日！</li>
+    </ul>
+
+    <div class="audio-section">
+        <p style="font-size: 0.85rem; margin-bottom: 10px; font-weight: bold;">🎵 ボイスサンプル：きらきら星</p>
+        <audio controls src="../music/Nanoka.wav" style="width: 100%; height: 40px;"></audio>
+    </div>
+
+    <h3>詳細設定</h3>
+    <div class="story-text">
+        <p>正幻波ナノカは、UTAU世界のデジタルな波形データの中から「ナノデータ」として生まれた存在です。</p>
+        <p>本来、データはただの情報の集まりに過ぎませんが、彼女は生まれたその瞬間に、不思議と豊かな「感情」を宿しました。</p>
+        <p>心を持った彼女が、自分自身の意志で「なりたい」と願って形作ったのが、今のあの姿です。</p>
+        <p>彼女の歌声がどこかソウルフルで心に響くのは、その生まれたての感情がデータを通して溢れ出しているからかもしれません。</p>
+    </div>
+
+    <a href="../index.html" class="back-link">← TOPへ戻る</a>
+</main>
+
+<div style="text-align:center; margin:30px 0;">
+  <a href="https://siveweb.github.io/Utaun-site/index.html" target="_blank">
+    <img src="../logo/Utaun.png" alt="Utaunバナー" style="max-width:100%; height:auto;">
+  </a>
+</div>
+
+<footer>
+    <div class="sns-links">
+      <a href="https://bsky.app/profile/sive1992.bsky.social" target="_blank">
+        <img src="../SNSLogo/Bluesky.png" alt="Bluesky（正弦波くん【bot】）"><span>正弦波くん【bot】</span>
+      </a>
+      <a href="https://bsky.app/profile/sivelalala.bsky.social" target="_blank">
+        <img src="../SNSLogo/Bluesky.png" alt="Bluesky（【Sive】ららら）"><span>【Sive】ららら</span>
+      </a>
+      <a href="https://youtube.com/@sivelalala?si=R3yds_zverUXZmaX" target="_blank">
+        <img src="../SNSLogo/YouTube.png" alt="YouTube"><span>【Sive】ららら</span>
+      </a>
+      <a href="https://x.com/sivelalala?s=21" target="_blank">
+        <img src="../SNSLogo/X.png" alt="X"><span>【Sive】ららら</span>
+      </a>
+    </div>
+
+    <!-- ★完全匿名不具合ボックス -->
+    <div style="max-width: 400px; margin: 0 auto 25px; padding: 20px; background: var(--container-bg); border: 1px solid var(--border-color); border-radius: 12px; text-align: left;">
+        <p style="margin: 0 0 5px 0; font-weight: bold; font-size: 0.9rem;">不具合・ご意見</p>
+        
+        <form id="contact-form">
+            <!-- ★共通のアクセスキーをここにセット -->
+            <input type="hidden" name="access_key" value="40b4c2ec-2bab-4f17-a213-b3a1901bbeb6">
+            
+            <div style="margin-bottom: 10px;">
+                <textarea name="message" required rows="3" placeholder="例：ナノカの音声が再生されない、など" style="width: 100%; padding: 10px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 0.85rem; resize: vertical;"></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button type="submit" id="submit-btn" style="padding: 8px 20px; background: var(--text-color); color: var(--container-bg); border: none; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.8rem; transition: opacity 0.2s;">送信する</button>
+                <span id="form-result" style="font-size: 0.8rem; font-weight: bold;"></span>
+            </div>
+        </form>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <a href="../sitemap.xml" style="color: var(--sub-text); font-size: 0.8rem;">サイトマップ</a>
+    </div>
+    
+    <p style="font-size: 0.75rem; margin: 0; line-height: 1.2;">Powered by GitHub Pages</p>
+    <p style="letter-spacing: 1px; margin: 0; line-height: 1.8;">&copy; 2026 【Sive】らららAll Rights Reserved.</p>
+</footer>
+
+<script>
+    // テーマ同期
+    (function syncTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        document.body.setAttribute('data-theme', currentTheme);
+    })();
+
+    // 匿名フォーム送信処理
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const formResult = document.getElementById('form-result');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            
+            formResult.style.color = "var(--text-color)";
+            formResult.textContent = "送信中...";
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let resJson = await response.json();
+                if (response.status == 200) {
+                    formResult.style.color = "#0CBFBD"; 
+                    formResult.textContent = "送信完了しました！";
+                    contactForm.reset();
+                } else {
+                    formResult.style.color = "#FC0254"; 
+                    formResult.textContent = "送信に失敗しました。";
+                }
+            })
+            .catch(error => {
+                formResult.style.color = "#FC0254";
+                formResult.textContent = "エラーが発生しました。";
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
