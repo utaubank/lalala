@@ -358,20 +358,20 @@
                  <li class="news-item">
                 <span class="news-date">2026.10.27</span>
                 <span class="news-text">正弦波ジャック【JPN&amp;ENG】（ver-1.0.4）配布開始！前バージョンより全ての母音が聞き取りやすくなりました！<br>正弦波くんのWindows専用オリジナルカーソルの配布も開始しました！利用規約はUTAU音源と変わりません。</span>
-            </li><li class="news-item">
+            </li><li class="news-item hidden">
                 <span class="news-date">2026.10.22</span>
                 <span class="news-text">サイトを一部改修しました。<br>各キャラクター（正弦波ジャック・虚音セイ・正幻波ナノカ）の立ち絵素材等をまとめたZIPファイルの配布を規約ページにて開始しました！</span>
             </li>
-            <li class="news-item">
+            <li class="news-item hidden">
                 <span class="news-date">2026.10.18</span>
                 <span class="news-text">サイトを一部改修しました。<br>普通頭身バージョンのイラストを各キャラクター紹介ページに掲載しました。</span>
-                </li><li class="news-item">
+                </li><li class="news-item hidden">
                 <span class="news-date">2026.10.16</span>
                 <span class="news-text">🎂正弦波ジャックくんのUTAU音源配布開始から１周年！</span>
             </li>
             
         </ul>
-        <button id="more-btn" style="display: none; width: 100%; border: medium; background: none; color: var(--text-color); cursor: pointer; font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">▼ もっと見る</button>
+        <button id="more-btn" style="display:block; width:100%; border:none; background:none; color:var(--text-color); cursor:pointer; font-size:0.8rem; margin-top:10px; opacity:0.7;">▼ もっと見る</button>
     </div>
 
     <div class="container">
@@ -462,6 +462,29 @@
         <img src="SNSLogo/X.png" alt="X">【Sive】ららら
       </a>
     </div>
+    
+    <!-- ★ここにメアドの代わりに「完全匿名不具合ボックス」を配置 -->
+    <div style="max-width: 400px; margin: 0 auto 25px; padding: 20px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; text-align: left;">
+        <p style="margin: 0 0 5px 0; font-weight: bold; font-size: 0.9rem;">不具合・ご意見</p>
+        
+        <form id="contact-form">
+            <input type="hidden" name="access_key" value="40b4c2ec-2bab-4f17-a213-b3a1901bbeb6">
+            
+            <div style="margin-bottom: 10px;">
+                <textarea name="message" required="" rows="3" placeholder="例：AIチャットでの使用は可能なのか、など" style="width: 100%; padding: 10px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 0.85rem; resize: vertical;"></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button type="submit" id="submit-btn" style="padding: 8px 20px; background: var(--text-color); color: var(--card-bg); border: none; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.8rem; transition: opacity 0.2s;">送信する</button>
+                <span id="form-result" style="font-size: 0.8rem; font-weight: bold; color: rgb(252, 2, 84);">エラーが発生しました。</span>
+            </div>
+        </form>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <a href="sitemap.xml" style="color: var(--sub-text); font-size: 0.8rem;">サイトマップ</a>
+    </div>
+
     <p style="font-size: 0.75rem;">© 2026 【Sive】ららら All Rights Reserved.</p>
 </footer>
 
@@ -488,6 +511,46 @@
         const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
         applyTheme(currentTheme);
     })();
+
+    // ★画面が変わらず裏でスッと送信するJavaScript
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const formResult = document.getElementById('form-result');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            
+            formResult.style.color = "var(--text-color)";
+            formResult.textContent = "送信中...";
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let resJson = await response.json();
+                if (response.status == 200) {
+                    formResult.style.color = "#0CBFBD"; 
+                    formResult.textContent = "送信完了しました！";
+                    contactForm.reset();
+                } else {
+                    formResult.style.color = "#FC0254"; 
+                    formResult.textContent = "送信に失敗しました。";
+                }
+            })
+            .catch(error => {
+                formResult.style.color = "#FC0254";
+                formResult.textContent = "エラーが発生しました。";
+            });
+        });
+    }
+
 </script>
 
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
