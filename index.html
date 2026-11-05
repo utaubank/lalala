@@ -1,6 +1,25 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
+<html lang="ja" data-theme="light"><head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
     <!-- ★画面が表示される前にテーマを決定するスクリプト（チラつき防止） -->
     <script>
         (function() {
@@ -11,18 +30,25 @@
         })();
     </script>
 
-    <meta name="google-site-verification" content="HR5duaG7kJc7cPypTsmMkbR114Klfllj53-V0vN2vKE" />
-    <link rel="canonical" href="https://siveprojectofficial.github.io/lalala/">
+    <!-- ★追加: /index.html で来たら / に飛ばす -->
+    <script>
+      if (location.pathname.endsWith('/index.html')) {
+        location.replace(location.pathname.replace(/index\.html$/, '') + location.search + location.hash);
+      }
+    </script>
+
+    <meta name="google-site-verification" content="HR5duaG7kJc7cPypTsmMkbR114Klfllj53-V0vN2vKE">
+    <link rel="canonical" href="https://utaubank.github.io/lalala/">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sive | UTAU音源公式サイト">
     <meta name="twitter:description" content="正弦波ジャック（正弦波くん）、正幻波ナノカ、虚音セイの公式配布サイトです。">
-    <meta name="twitter:image" content="https://siveprojectofficial.github.io/lalala/image/card.png.PNG">
+    <meta name="twitter:image" content="https://utaubank.github.io/lalala/image/card.png.PNG">
     
     <meta property="og:title" content="Sive | UTAU音源公式サイト">
     <meta property="og:description" content="正弦波ジャック（正弦波くん）、正幻波ナノカ、虚音セイの公式配布サイトです。">
-    <meta property="og:image" content="https://siveprojectofficial.github.io/lalala/image/card.png.PNG">
-    <meta property="og:url" content="https://siveprojectofficial.github.io/lalala/">
+    <meta property="og:image" content="https://utaubank.github.io/lalala/image/card.png.PNG">
+    <meta property="og:url" content="https://utaubank.github.io/lalala/">
     <meta property="og:type" content="website">
 
     <meta name="description" content="UTAU音源配布サイト『Sive』の公式サイトです。正弦波ジャック、正幻波ナノカ、虚音セイの情報を発信しています。">
@@ -36,16 +62,14 @@
 
     <title>Sive | UTAU音源配布</title>
     <style>
-        /* --- 変数定義 --- */
-        /* サイト内のすべての画像で「長押しメニュー」「テキスト選択」「ドラッグ」をまとめて無効化 */
-img {
-    -webkit-touch-callout: none; /* iOSの長押し保存メニューを無効化 */
-    -webkit-user-select: none;   /* iOS/Safariでの選択（青いカーソル）を無効化 */
-    -moz-user-select: none;      /* Firefoxでの選択防止 */
-    -ms-user-select: none;       /* IE/Edgeでの選択防止 */
-    user-select: none;           /* 標準の選択防止 */
-    -webkit-user-drag: none;     /* ドラッグ禁止 */
-}
+        img {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
         :root {
             --bg-color: #f4f7f9;
             --card-bg: #ffffff;
@@ -55,21 +79,16 @@ img {
             --rule-border: #ffcccc;
             --info-bg: #fdfdfd;
             --news-date: #606060;
-
             --accent-jack: #CF0000;   
             --accent-sei: #FF00BF; 
             --accent-nanoka: #016068;
-            
             --footer-label: #555555;
             --sub-text: #555555;
-            
             --brand-color: #002AFF; 
-
             --nav-bg: #f0f0f0;
             --nav-border: #000000;  
             --nav-text: #000000;
         }
-
         [data-theme="light"] {
             --bg-color: #f4f7f9; --card-bg: #ffffff; --text-color: #1a1a1a;
             --border-color: #eaeaea; --rule-bg: #fff0f0; --rule-border: #ffcccc;
@@ -92,7 +111,6 @@ img {
             --nav-border: #f0f0f0;  
             --nav-text: #ffffff;
         }
-
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
             margin: 0; padding: 0;
@@ -101,15 +119,12 @@ img {
             line-height: 1.8;
             transition: background-color 0.3s, color 0.3s;
         }
-
-        /* --- 画像の長押し保存・選択を防止 --- */
         img {
-            -webkit-touch-callout: none; /* iOS Safariの長押しメニューを無効化 */
-            -webkit-user-select: none;   /* 選択防止 */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
             user-select: none;
-            pointer-events: auto;        /* リンクやレイアウトへの影響を防ぐ */
+            pointer-events: auto;
         }
-
         .top-nav {
             display: flex;
             width: 100%;
@@ -122,7 +137,6 @@ img {
             z-index: 1000;
             transition: background-color 0.3s, border-color 0.3s;
         }
-
         .top-nav a {
             flex: 1;
             text-align: center;
@@ -139,16 +153,11 @@ img {
             box-sizing: border-box;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
-
-        .top-nav a:last-child {
-            border-right: none;
-        }
-
+        .top-nav a:last-child { border-right: none; }
         .top-nav a.active-home {
             background-color: var(--text-color);
             color: var(--card-bg);
         }
-
         header {
             background-color: var(--card-bg);
             padding: 40px 20px;
@@ -156,11 +165,9 @@ img {
             border-bottom: 2px solid var(--border-color);
             position: relative;
         }
-
         h1 { margin: 0; font-size: 2rem; }
         h2 { font-size: 1.5rem; margin-top: 0; }
         h3 { font-size: 1.2rem; margin-top: 0; }
-
         .theme-toggle-header {
             position: absolute;
             top: 15px;
@@ -177,7 +184,6 @@ img {
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
             line-height: 1;
         }
-
         .site-info-box {
             max-width: 700px;
             margin: 25px auto 0;
@@ -189,15 +195,6 @@ img {
             text-align: left;
             line-height: 1.6;
         }
-
-        .site-info-notes {
-            color: var(--sub-text);
-            font-size: 0.75rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 5px;
-            margin-top: 5px;
-        }
-
         .news-container {
             max-width: 700px;
             margin: 30px auto 10px;
@@ -230,13 +227,11 @@ img {
         .news-date { color: var(--news-date); font-family: monospace; flex-shrink: 0; }
         .news-text { flex-grow: 1; }
         .news-item.hidden { display: none; }
-
         .container {
             max-width: 1000px;
             margin: 10px auto 30px;
             padding: 20px;
         }
-
         .character-card {
             background: var(--card-bg);
             border-radius: 15px;
@@ -249,7 +244,6 @@ img {
             align-items: center;
             border: 1px solid var(--border-color);
         }
-
         .char-info { flex: 1; min-width: 200px; }
         .char-img-container { flex: 0 0 300px; text-align: center; }
         .char-img {
@@ -257,14 +251,12 @@ img {
             height: auto;
             border-radius: 10px;
         }
-
         .sample-player {
             margin: 15px 0;
             padding: 10px;
             background: var(--bg-color);
             border-radius: 8px;
         }
-        
         .detail-btn {
             display: inline-block;
             margin-top: 15px;
@@ -276,15 +268,12 @@ img {
             transition: 0.3s;
         }
         .detail-btn:hover { opacity: 0.8; transform: translateY(-2px); }
-        
         .btn-jack { background-color: var(--accent-jack); }
         .btn-sei { background-color: var(--accent-sei); }
         .btn-nanoka { background-color: var(--accent-nanoka); }
-        
         .accent-jack { color: var(--accent-jack); font-weight: bold; }
         .accent-sei { color: var(--accent-sei); font-weight: bold; }
         .accent-nanoka { color: var(--accent-nanoka); font-weight: bold; }
-
         .rules-section {
             background-color: var(--rule-bg);
             border: 1px solid var(--rule-border);
@@ -292,7 +281,6 @@ img {
             padding: 30px;
             text-align: center;
         }
-        
         .rules-btn {
             display: inline-block;
             margin-top: 15px;
@@ -304,14 +292,12 @@ img {
             font-size: 0.9rem;
             font-weight: bold;
         }
-
         footer {
             text-align: center;
             padding: 60px 20px;
             color: var(--sub-text);
             border-top: 1px solid var(--border-color);
         }
-
         .sns-links {
             display: grid;
             grid-template-columns: 1fr 1fr; 
@@ -320,7 +306,6 @@ img {
             margin: 30px auto;
             max-width: 320px;               
         }
-
         .sns-links a {
             display: flex;
             flex-direction: column;         
@@ -329,42 +314,20 @@ img {
             color: var(--brand-color);
             text-decoration: none;
         }
-
-        .sns-links a:hover {
-            opacity: 0.7;
-        }
-
+        .sns-links a:hover { opacity: 0.7; }
         @media (max-width: 768px) { 
-            .character-card { 
-                flex-direction: column; 
-                text-align: center; 
-                padding: 20px;
-            }
-            .char-img-container {
-                flex: unset;
-                width: 100%;
-            }
-            .char-img {
-                max-width: 220px; 
-                width: 100%;
-            }
-            .theme-toggle-header { 
-                position: static; 
-                margin-top: 10px; 
-                margin-bottom: 10px; 
-                display: inline-block; 
-                padding: 12px 28px;
-                font-size: 1.5rem;
-            }
+            .character-card { flex-direction: column; text-align: center; padding: 20px; }
+            .char-img-container { flex: unset; width: 100%; }
+            .char-img { max-width: 220px; width: 100%; }
+            .theme-toggle-header { position: static; margin-top: 10px; margin-bottom: 10px; display: inline-block; padding: 12px 28px; font-size: 1.5rem; }
             .news-item { flex-direction: column; gap: 2px; }
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
-<!-- 固定ヘッダーメニュー -->
 <nav class="top-nav">
-  <a href="index.html" class="active-home">ホーム</a>
+  <a href="./" class="active-home">ホーム</a>
   <a href="jack/">正弦波<br>ジャック</a>
   <a href="nanoka/">正幻波<br>ナノカ</a>
   <a href="sei/">虚音<br>セイ</a>
@@ -372,13 +335,11 @@ img {
 </nav>
 
 <header>
-    <button class="theme-toggle-header" onclick="toggleTheme()" title="モード切り替え">🔆 / 🌙</button>
+    <button class="theme-toggle-header" onclick="toggleTheme()" title="モード切り替え">🔆</button>
     <div style="text-align:center; margin-top:20px;">
       <img src="logo/Sive.png" alt="Sive" style="width:300px; max-width:100%; height:auto;">
     </div>
-
     <p>正弦波ジャック・正幻波ナノカ・虚音セイの音源を配布しています。</p>
-    
     <div class="site-info-box">
         <div style="margin-bottom: 12px;">
             <p style="margin: 0;"><b>本サイトで取得する情報について</b></p>
@@ -388,7 +349,6 @@ img {
             <p style="margin: 0;">お問い合わせについて：各ページの下にあるフッターの匿名ボックスから送信できます！</p>
         </div>
     </div>
-
 </header>
 
 <main id="main-content">
@@ -397,85 +357,36 @@ img {
             <ul class="news-list" id="news-list">
                  <li class="news-item">
                 <span class="news-date">2026.10.27</span>
-                <span class="news-text">正弦波ジャック【JPN&ENG】（ver-1.0.4）配布開始！前バージョンより全ての母音が聞き取りやすくなりました！<br>正弦波くんのWindows専用オリジナルカーソルの配布も開始しました！利用規約はUTAU音源と変わりません。</span>
-            <li class="news-item hidden">
+                <span class="news-text">正弦波ジャック【JPN&amp;ENG】（ver-1.0.4）配布開始！前バージョンより全ての母音が聞き取りやすくなりました！<br>正弦波くんのWindows専用オリジナルカーソルの配布も開始しました！利用規約はUTAU音源と変わりません。</span>
+            </li><li class="news-item">
                 <span class="news-date">2026.10.22</span>
-                <span class="news-text">サイトを一部改修しました。<br>各キャラクター（正弦波ジャック・虚音セイ・正幻波ナノカ）の立ち絵素材等をまとめたZIPファイルの配布を規約ページにて開始しました！<br>このため、サイト内での画像の長押しダウンロードによる配布・Siveロゴの配布を停止しました。立ち絵はぜひ動画制作等にご活用ください。<br>ZIP内の同梱物は以下の通りとなります。<br>・各キャラ普通頭身JPG<br>・各キャラ普通頭身透過PNG<br>・各キャラミニ版JPG<br>・各キャラミニ版PNG<br>・各キャラのロゴPNG</span>
+                <span class="news-text">サイトを一部改修しました。<br>各キャラクター（正弦波ジャック・虚音セイ・正幻波ナノカ）の立ち絵素材等をまとめたZIPファイルの配布を規約ページにて開始しました！</span>
             </li>
-            <li class="news-item hidden">
+            <li class="news-item">
                 <span class="news-date">2026.10.18</span>
-                <span class="news-text">サイトを一部改修しました。<br>普通頭身バージョンのイラストを各キャラクター紹介ページに掲載しました。<br>配布画像をJPGに、配布ロゴをPNGに統一しました、又ファイル名が複雑だった為ファイル名をキャラクターのローマ字名に変更しました。</span>
-                <li class="news-item hidden">
+                <span class="news-text">サイトを一部改修しました。<br>普通頭身バージョンのイラストを各キャラクター紹介ページに掲載しました。</span>
+                </li><li class="news-item">
                 <span class="news-date">2026.10.16</span>
-                <span class="news-text">🎂正弦波ジャックくんのUTAU音源配布開始から１周年！正弦波くんお誕生日おめでとう！🎉</span>
+                <span class="news-text">🎂正弦波ジャックくんのUTAU音源配布開始から１周年！</span>
             </li>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.10.06</span>
-                <span class="news-text">サイトを一部改修しました。Utaunのソース公開に伴い、名義を明白にするため各ページのフッター部分のコピーライトを変更しました。</span>
-            </li>
-                        <li class="news-item hidden">
-                <span class="news-date">2026.09.24</span>
-                <span class="news-text">サイトを一部改修しました。<br>GoogleDrive経由の音源配布を停止しました。<br>お問い合わせをより匿名で行えるようにしました！<br>姉妹サイト「Utaun公式サイト」とリンクを繋ぎました！<br>詳細はバナーからご確認ください。</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.08.5</span>
-                <span class="news-text">サイトを一部改修しました。正弦波ジャックの利用規約を一部更新しました。<br>これにより「正弦波ジャック【JPN&ENG】（ver-1.0.3）を配布します。<br>readme.txtの「利用規約」と「連絡先等」の部分を変更しましたのでUTAU・OpenUTAUにてご確認お願いいたします。<br>新キャラクター「虚音セイ」のUTAU音源<br>「虚音セイ【JPN&ENG】（ver-1.0.0）配布開始！</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.07.01</span>
-                <span class="news-text">サイトを一部改修しました。正弦波ジャック【JPN&ENG】（ver-1.0.2）配布開始！より滑らかに歌わせられます！</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.05.25</span>
-                <span class="news-text">サイトを一部改修しました。</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.05.24</span>
-                <span class="news-text">報告忘れてました！ごめんなさい！！<br>X、YouTubeにて管理者“【Sive】ららら"アカウント開始！<br>YouTubeは未投稿です。各リンクが概要欄にある状態です。</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.05.19</span>
-                <span class="news-text">“正弦波くん【bot】"アカウントがBlueskyにて再始動！<br>Blueskyにて管理者“【Sive】ららら"アカウント開始！</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.04.09</span>
-                <span class="news-text">自作規約の遵守のため、サイト内で公開していたAI生成の立ち絵素材の配布を終了いたしました。</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.03.29</span>
-                <span class="news-text">正弦波ジャック【JPN＆ENG】（ver-1.0.1）配布開始！より子音部・濁音部・半濁音部が自然になりました！</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.03.28</span>
-                <span class="news-text">サイトを一部改修しました！</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.03.18</span>
-                <span class="news-text">エラー多発のためXbot“正弦波くん”アカウントを終了致しました。フォローして下さった皆様ありがとうございました！</span>
-            </li>
-            <li class="news-item hidden">
-                <span class="news-date">2026.01.14</span>
-                <span class="news-text">正弦波ジャック、正幻波ナノカの音源配布サイトを移行・改修しました！</span>
-            </li>
+            
         </ul>
-        <button id="more-btn" style="display:block; width:100%; border:none; background:none; color:var(--text-color); cursor:pointer; font-size:0.8rem; margin-top:10px; opacity:0.7;">▼ もっと見る</button>
+        <button id="more-btn" style="display: none; width: 100%; border: medium; background: none; color: var(--text-color); cursor: pointer; font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">▼ もっと見る</button>
     </div>
 
     <div class="container">
-        <!-- 正弦波ジャック -->
         <div class="character-card">
             <div class="char-info">
                 <h3>正弦波ジャック（正弦波くん）</h3>
                 <div style="margin: 0;">
-                    <h4 style="margin: 0 0 5px 0;">zipのままOpen UTAUへD&D！</h4>
+                    <h4 style="margin: 0 0 5px 0;">zipのままOpen UTAUへD&amp;D！</h4>
                     <h4 style="margin: 0 0 5px 0;">UTAU本体は解凍してUTAUのvoiceフォルダへ！</h4>
                     <h4 class="accent-jack" style="margin: 0;">⚠本UTAU音源はUTAletには非対応です！</h4>
                     <h4 class="accent-jack" style="margin: 0;">加算合成音声のため、モゴモゴした声と発音が特徴です。</h4>
                 </div>
                 <div class="sample-player">
                     <p style="font-size: 0.7rem; margin-bottom: 5px; opacity: 0.7;">🎵 音声サンプル：きらきら星</p>
-                    <audio controls src="music/Jack.wav" style="width: 100%; height: 35px;"></audio>
+                    <audio controls="" src="music/Jack.wav" style="width: 100%; height: 35px;"></audio>
                 </div>
                 <a href="jack/" class="detail-btn btn-jack">プロフを見る</a>
             </div>
@@ -484,7 +395,6 @@ img {
             </div>
         </div>
 
-        <!-- 虚音セイ -->
         <div class="character-card">
             <div class="char-info">
                 <h3>虚音セイ</h3>
@@ -495,7 +405,7 @@ img {
                 </div>
                 <div class="sample-player">
                     <p style="font-size: 0.7rem; margin-bottom: 5px; opacity: 0.7;">🎵 音声サンプル：きらきら星</p>
-                    <audio controls src="music/Sei.wav" style="width: 100%; height: 35px;"></audio>
+                    <audio controls="" src="music/Sei.wav" style="width: 100%; height: 35px;"></audio>
                 </div>
                 <a href="sei/" class="detail-btn btn-sei">プロフを見る</a>
             </div>
@@ -504,7 +414,6 @@ img {
             </div>
         </div>
 
-        <!-- 正幻波ナノカ -->
         <div class="character-card">
             <div class="char-info">
                 <h3>正幻波ナノカ</h3>
@@ -515,7 +424,7 @@ img {
                 </div>
                 <div class="sample-player">
                     <p style="font-size: 0.7rem; margin-bottom: 5px; opacity: 0.7;">🎵 音声サンプル：きらきら星</p>
-                    <audio controls src="music/Nanoka.wav" style="width: 100%; height: 35px;"></audio>
+                    <audio controls="" src="music/Nanoka.wav" style="width: 100%; height: 35px;"></audio>
                 </div>
                 <a href="nanoka/" class="detail-btn btn-nanoka">プロフを見る</a>
             </div>
@@ -541,42 +450,19 @@ img {
 <footer>
     <div class="sns-links">
       <a href="https://bsky.app/profile/sive1992.bsky.social" target="_blank">
-        <img src="SNSLogo/Bluesky.png" alt="Bluesky（正弦波くん【bot】）" style="max-width:100%; height:auto;">正弦波くん【bot】
+        <img src="SNSLogo/Bluesky.png" alt="Bluesky">正弦波くん【bot】
       </a>
       <a href="https://bsky.app/profile/sivelalala.bsky.social" target="_blank">
-        <img src="SNSLogo/Bluesky.png" alt="Bluesky（Sive【ららら】）" style="max-width:100%; height:auto;">【Sive】ららら
+        <img src="SNSLogo/Bluesky.png" alt="Bluesky">【Sive】ららら
       </a>
       <a href="https://youtube.com/@sivelalala?si=R3yds_zverUXZmaX" target="_blank">
-        <img src="SNSLogo/YouTube.png" alt="YouTube" style="max-width:100%; height:auto;">【Sive】ららら
+        <img src="SNSLogo/YouTube.png" alt="YouTube">【Sive】ららら
       </a>
       <a href="https://x.com/sivelalala?s=21" target="_blank">
-        <img src="SNSLogo/X.png" alt="X" style="max-width:100%; height:auto;">【Sive】ららら
+        <img src="SNSLogo/X.png" alt="X">【Sive】ららら
       </a>
     </div>
-
-    <!-- ★ここにメアドの代わりに「完全匿名不具合ボックス」を配置 -->
-    <div style="max-width: 400px; margin: 0 auto 25px; padding: 20px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; text-align: left;">
-        <p style="margin: 0 0 5px 0; font-weight: bold; font-size: 0.9rem;">不具合・ご意見</p>
-        
-        <form id="contact-form">
-            <input type="hidden" name="access_key" value="40b4c2ec-2bab-4f17-a213-b3a1901bbeb6">
-            
-            <div style="margin-bottom: 10px;">
-                <textarea name="message" required rows="3" placeholder="例：AIチャットでの使用は可能なのか、など" style="width: 100%; padding: 10px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 0.85rem; resize: vertical;"></textarea>
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <button type="submit" id="submit-btn" style="padding: 8px 20px; background: var(--text-color); color: var(--card-bg); border: none; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.8rem; transition: opacity 0.2s;">送信する</button>
-                <span id="form-result" style="font-size: 0.8rem; font-weight: bold;"></span>
-            </div>
-        </form>
-    </div>
-
-    <div style="margin-bottom: 20px;">
-        <a href="sitemap.xml" style="color: var(--sub-text); font-size: 0.8rem;">サイトマップ</a>
-    </div>
-    <p style="font-size: 0.75rem; margin: 0; line-height: 1.2;">Powered by GitHub Pages</p>
-    <p style="letter-spacing: 1px; margin: 0; line-height: 1.2;">&copy; 2026 【Sive】ららら All Rights Reserved.</p>
+    <p style="font-size: 0.75rem;">© 2026 【Sive】ららら All Rights Reserved.</p>
 </footer>
 
 <script>
@@ -586,66 +472,24 @@ img {
         hiddenItems.forEach(item => item.classList.remove('hidden'));
         moreBtn.style.display = 'none';
     });
-
     const toggleBtn = document.querySelector('.theme-toggle-header');
-
     const applyTheme = (theme) => {
         document.documentElement.setAttribute('data-theme', theme);
         document.body.setAttribute('data-theme', theme);
         if (toggleBtn) toggleBtn.textContent = theme === 'dark' ? '🌙' : '🔆';
         localStorage.setItem('theme', theme);
     };
-
     function toggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
         const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
         applyTheme(nextTheme);
     }
-
     (function initButtonState() {
         const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
         applyTheme(currentTheme);
     })();
-
-    // ★画面が変わらず裏でスッと送信するJavaScript
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        const formResult = document.getElementById('form-result');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-            
-            formResult.style.color = "var(--text-color)";
-            formResult.textContent = "送信中...";
-
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: json
-            })
-            .then(async (response) => {
-                let resJson = await response.json();
-                if (response.status == 200) {
-                    formResult.style.color = "#0CBFBD"; 
-                    formResult.textContent = "送信完了しました！";
-                    contactForm.reset();
-                } else {
-                    formResult.style.color = "#FC0254"; 
-                    formResult.textContent = "送信に失敗しました。";
-                }
-            })
-            .catch(error => {
-                formResult.style.color = "#FC0254";
-                formResult.textContent = "エラーが発生しました。";
-            });
-        });
-    }
 </script>
 
-</body>
-</html>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
+
+</body></html>
