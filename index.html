@@ -10,6 +10,11 @@
             document.documentElement.setAttribute('data-theme', initialTheme);
         })();
     </script>
+     <script>
+      if (location.pathname.endsWith('/index.html')) {
+        location.replace(location.pathname.replace(/index\.html$/, '') + location.search + location.hash);
+      }
+    </script>
 
     <meta name="google-site-verification" content="HR5duaG7kJc7cPypTsmMkbR114Klfllj53-V0vN2vKE" />
     <link rel="canonical" href="https://siveprojectofficial.github.io/lalala/">
