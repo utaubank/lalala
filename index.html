@@ -360,6 +360,11 @@ img {
         }
     </style>
 </head>
+     <script>
+      if (location.pathname.endsWith('/index.html')) {
+        location.replace(location.pathname.replace(/index\.html$/, '') + location.search + location.hash);
+      }
+    </script>
 <body>
 
 <!-- 固定ヘッダーメニュー -->
