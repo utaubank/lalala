@@ -1,4 +1,4 @@
-<html lang="ja" data-theme="dark"><head><style>
+<html lang="ja" data-theme="dark" style="color-scheme: light;"><head><style>
 @font-face {
   font-family: "Optimistic";
   font-style: normal;
@@ -20,18 +20,18 @@
   font-family: "Optimistic Mono", ui-monospace, monospace;
 }
 </style>
+    <style>html{background:#f4f7f9}html[data-theme="dark"]{background:#121212}html[data-theme="dark"] body{background:#121212}body{opacity:0;transition:opacity .12s}body[data-theme]{opacity:1}</style>
     <script>
         (function() {
-            const savedTheme = localStorage.getItem('theme');
-            const osPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const initialTheme = savedTheme || (osPrefersDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', initialTheme);
+            try {
+                const saved = localStorage.getItem('theme');
+                const osDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = saved || (osDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.style.colorScheme = theme;
+                // bodyがまだ無い場合でも、後でCSSが当たるようにstyleタグ側で制御する
+            } catch(e) {}
         })();
-    </script>
-     <script>
-      if (location.pathname.endsWith('/index.html')) {
-        location.replace(location.pathname.replace(/index\.html$/, '') + location.search + location.hash);
-      }
     </script>
     <meta name="google-site-verification" content="HR5duaG7kJc7cPypTsmMkbR114Klfllj53-V0vN2vKE">
     <link rel="canonical" href="https://siveprojectofficial.github.io/lalala/">
@@ -73,7 +73,7 @@
             --accent-jack: #CF0000;
             --accent-sei: #FF00BF;
             --accent-nanoka: #016068;
-            --accent-rui: #7D6EFF;
+            --accent-rui: #6B7280;
             --footer-label: #555555;
             --sub-text: #555555;
             --brand-color: #002AFF;
@@ -85,7 +85,7 @@
             --bg-color: #f4f7f9; --card-bg: #ffffff; --text-color: #1a1a1a;
             --border-color: #eaeaea; --rule-bg: #fff0f0; --rule-border: #ffcccc;
             --info-bg: #fdfdfd; --news-date: #606060;
-            --accent-jack: #CF0000; --accent-sei: #FF00BF; --accent-nanoka: #016068; --accent-rui: #7D6EFF;
+            --accent-jack: #CF0000; --accent-sei: #FF00BF; --accent-nanoka: #016068; --accent-rui: #6B7280;
             --footer-label: #555555; --sub-text: #555555;
             --brand-color: #002AFF;
             --nav-bg: #f0f0f0; --nav-border: #000000; --nav-text: #000000;
@@ -94,7 +94,7 @@
             --bg-color: #121212; --card-bg: #1e1e1e; --text-color: #f0f0f0;
             --border-color: #333333; --rule-bg: #2d1a1a; --rule-border: #5c2b2b;
             --info-bg: #252525; --news-date: #b0b0b0;
-            --accent-jack: #ff5c8d; --accent-sei: #FF9EE6; --accent-nanoka: #4dd0e1; --accent-rui: #7D6EFF;
+            --accent-jack: #ff5c8d; --accent-sei: #FF9EE6; --accent-nanoka: #4dd0e1; --accent-rui: #9CA3AF;
             --footer-label: #cccccc; --sub-text: #b0b0b0;
             --brand-color: #81d4fa;
             --nav-bg: #1e1e1e; --nav-border: #f0f0f0; --nav-text: #ffffff;
@@ -202,9 +202,9 @@
         }
     </style>
 </head>
-<body data-theme="dark">
+<body data-theme="dark"><script>try{document.body.setAttribute("data-theme", document.documentElement.getAttribute("data-theme")||"light")}catch(e){}</script>
 <nav class="top-nav">
-  <a href="index.html" class="active-home">ホーム</a>
+  <a href="./" class="active-home">ホーム</a>
   <a href="jack/">正弦波<br>ジャック</a>
   <a href="nanoka/">正幻波<br>ナノカ</a>
   <a href="sei/">虚音<br>セイ</a>
@@ -445,8 +445,10 @@
         applyTheme(nextTheme);
     }
     (function initButtonState() {
+        // ここで applyTheme() を呼ばないこと。呼ぶとライト→ダークで1回塗り直してチラつく
         const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-        applyTheme(currentTheme);
+        document.body.setAttribute('data-theme', currentTheme);
+        if (toggleBtn) toggleBtn.textContent = currentTheme === 'dark' ? '🌙' : '🔆';
     })();
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
