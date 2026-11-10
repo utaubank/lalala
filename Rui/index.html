@@ -1,0 +1,283 @@
+<html lang="ja" data-theme="light"><head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const osPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initialTheme = savedTheme || (osPrefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', initialTheme);
+        })();
+    </script>
+    <meta name="description" content="UTAU音源『封音ルイ』の公式設定・プロフィール紹介ページです。キャラクターの詳細はこちらからご確認ください。">
+    <link rel="shortcut icon" href="../logo/Sivefabi.ico?v=2" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../logo/Sivefabi.ico?v=2">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="封音ルイ,ふうねるい,正弦波ジャック,無生物UTAU音源,UTAU,OpenUTAU,Utaun,音源配布">
+    <title>封音ルイ | Sive</title>
+    <style>
+        img {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        :root {
+            --bg-color: #f4f7f9;
+            --container-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --sub-text: #555555;
+            --border-color: #eaeaea;
+            --header-color: #7D6EFF;
+            --gmail-link: #002AFF;
+            --sns-links: #002AFF;
+            --nav-bg: #f0f0f0;
+            --nav-border: #000000;
+            --nav-text: #000000;
+            --rui-active-bg: #7D6EFF;
+            --rui-active-text: #ffffff;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --text-color: #f0f0f0;
+            --sub-text: #b0b0b0;
+            --border-color: #333333;
+            --header-color: #7D6EFF;
+            --gmail-link: #81d4fa;
+            --sns-links: #81d4fa;
+            --nav-bg: #2a2a2a;
+            --nav-border: #F0F0F0;
+            --nav-text: #ffffff;
+            --rui-active-bg: #7D6EFF;
+            --rui-active-text: #ffffff;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .top-nav {
+            display: flex; width: 100%;
+            border-top: 2px solid var(--nav-border);
+            border-bottom: 2px solid var(--nav-border);
+            box-sizing: border-box;
+            background-color: var(--nav-bg);
+            position: sticky; top: 0; z-index: 1000;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .top-nav a {
+            flex: 1; text-align: center; padding: 10px 0;
+            text-decoration: none; color: var(--nav-text);
+            font-weight: bold; font-size: 0.85rem; line-height: 1.2;
+            border-right: 1px solid var(--nav-border);
+            display: flex; align-items: center; justify-content: center;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .top-nav a:last-child { border-right: none; }
+        .top-nav a.active-rui { background-color: var(--rui-active-bg); color: var(--rui-active-text); }
+        .container {
+            max-width: 600px; margin: 40px auto; padding: 30px;
+            background-color: var(--container-bg); border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+        }
+        h2 {
+            color: var(--header-color); font-size: 2.2rem; margin: 0 0 10px 0;
+            border-bottom: 2px solid var(--border-color); padding-bottom: 10px;
+        }
+        h3 {
+            color: var(--header-color); font-size: 1.25rem; margin-top: 40px; margin-bottom: 15px;
+            display: flex; align-items: center;
+        }
+        h3::before {
+            content: ""; display: inline-block; width: 4px; height: 1.2em;
+            background-color: var(--header-color); margin-right: 10px; border-radius: 2px;
+        }
+        .main-img {
+            width: 100%; height: auto; margin-bottom: 20px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: block;
+        }
+        .profile-list { list-style: none; padding: 0; font-size: 1.05rem; }
+        .profile-list li { margin-bottom: 12px; border-bottom: 1px dashed var(--border-color); padding-bottom: 5px; }
+        .profile-list strong { color: var(--header-color); }
+        .audio-section {
+            margin: 25px 0; padding: 20px;
+            background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px;
+        }
+        .story-text { font-size: 1rem; color: var(--text-color); text-align: justify; }
+        .back-link { display: block; text-align: center; margin: 50px 0; text-decoration: none; color: var(--header-color); font-weight: bold; transition: 0.3s; }
+        footer { text-align: center; padding: 60px 20px; color: var(--sub-text); border-top: 1px solid var(--border-color); }
+        .sns-links { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 10px; justify-items: center; margin: 30px auto; max-width: 320px; }
+        .sns-links a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--sns-links); gap: 8px; width: 100%; }
+        .sns-links a img { width: 45px; height: 45px; border-radius: 10px; flex-shrink: 0; }
+        .sns-links a span { font-size: 0.7rem; white-space: nowrap; text-align: center; }
+        @media (max-width: 600px) {
+            .container { margin: 20px 10px; padding: 20px; }
+            h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+<nav class="top-nav">
+  <a href="../index.html">ホーム</a>
+  <a href="../jack/">正弦波<br>ジャック</a>
+  <a href="../nanoka/">正幻波<br>ナノカ</a>
+  <a href="../sei/">虚音<br>セイ</a>
+  <a href="./" class="active-rui">封音<br>ルイ</a>
+  <a href="../rules/">利用規約</a>
+</nav>
+<main class="container">
+    <div style="display:flex; justify-content:flex-end; align-items:center; padding:10px 15px;">
+      <img src="../logo/Sive.png" alt="Siveロゴ" style="width:120px;">
+    </div>
+    <img src="../Image/Rui.JPG" alt="封音ルイの立ち絵" class="main-img">
+    <h2 style="text-align: left;">封音ルイ</h2>
+    <h3>プロフィール</h3>
+    <ul class="profile-list">
+        <li><strong>名前：</strong> 封音ルイ（ふうね るい）</li>
+        <li><strong>年齢：</strong> 13歳 中学1年生</li>
+        <li><strong>性格：</strong> 喋るより話を聞くのが好き、落ち着いてる</li>
+        <li><strong>口癖：</strong> 「もう忘れないよ」</li>
+        <li><strong>誕生日：</strong> 9月29日</li>
+        <li><strong>血液型：</strong> B型</li>
+        <li><strong>MBTI：</strong> INTP</li>
+        <li><strong>好き：</strong> ストロベリーアイス、ボカロ、国語</li>
+        <li><strong>苦手：</strong> チョコレート、お絵描き、数学</li>
+        <li><strong>得意料理：</strong> いちごミルク</li>
+        <li><strong>憧れの対象：</strong> 初音ミク</li>
+        <li><strong>家族：</strong> 妹 虚音セイ</li>
+    </ul>
+    <div class="audio-section">
+        <p style="font-size: 0.85rem; margin-bottom: 10px; font-weight: bold;">🎵 ボイスサンプル：きらきら星</p>
+        <audio controls="" src="../music/Rui.wav" style="width: 100%; height: 40px;"></audio>
+    </div>
+    <h3>詳細設定</h3>
+    <div class="story-text">
+        <p>封音ルイは、ボカロが好きでした。ボカロが好きなので、ルイにとってはボカロゲームで遊ぶのは当たり前でした、そしてボカロゲームで遊べばセーブデータが出来ます。</p>
+        <p>そのセーブデータが奇跡的に、「正幻波ナノカ」として生まれました。ナノカの「ナノデータ」は本当はルイが作ったボカロゲームの「セーブデータ」でした。</p>
+        <p>ナノカの暮らしているUTAU世界に、ボカロゲームに吸い込まれ、記憶を失って「自分は別世界線のジャックだ」と思い込んでいる少年がいました。</p>
+        <p>彼は、吸い込まれた直後に誰かにストロベリー味のアイスを渡され、それを食べた瞬間に全ての記憶を失ったとナノカに話したそうです。</p>
+        <p>そして虚音セイという女の子がナノカの親友となりました、このセイはルイと兄妹でした、以前、セイはルイの事を「お兄ちゃん」と呼んでいました、ですが今のセイは正弦波くんを「お兄ちゃん」と呼んでいます。</p>
+        <p>もしかしたら正弦波くんとルイはー</p>
+    </div>
+    <h3>利用規約</h3>
+    <div class="story-text" style="font-size: 0.95rem;">
+        <p><strong>1. 別キャラとしての使用禁止</strong><br>本音源を他のキャラクターとして利用することを禁止します</p>
+        <p><strong>2. 音源データの改変禁止</strong><br>本音源のデータ改変（icon.jpgを含む）は不可です。</p>
+        <p><strong>3. 二次創作について</strong><br>二次創作は歓迎します、クロスオーバー・共演・パロディは他作品でも問題ありません。</p>
+        <p><strong>4. 音質特性について</strong><br>本音源はUTAU＋減算のため、フィルターがかかったような抑えた声質になります。了承の上でご使用ください。</p>
+        <p><strong>5. プロフィールの扱い</strong><br>封音ルイのプロフィールを楽曲用・二次創作用に追加することは可能です。ただし既存の設定（性格・年齢など）を改変することはできません。</p>
+        <p><strong>6. 再配布禁止</strong><br>本音源の原音ファイルの再配布・転載・ミラー配布・再アップロードは一切禁止します。配布は必ず公式配布ページのみとし、原音ファイルを第三者へ渡す行為も禁止します。</p>
+        <p><strong>7. グッズ販売について</strong><br>封音ルイを使用したグッズ販売（物理・デジタル問わず）を全面的に許可します。個人・同人範囲でのグッズ制作・販売も、商用でのグッズ制作・販売も問題ありません。</p>
+        <p><strong>8. 商用利用について</strong><br>商用利用を全面的に許可します。YouTubeなどの動画プラットフォームでの広告収益化はもちろん、スポンサー案件、タイアップ、有料配布、有料イベントなども問題ありません。複数人で制作した楽曲の場合、広告収益の分配については制作した方々で話し合って決めてください。</p>
+        <p><strong>9. 問い合わせ先</strong><br>0329.mth@gmail.com</p>
+        <p style="font-size: 0.8rem; color: var(--sub-text);">※本規約は法的助言ではありません。商用利用や権利関係で不安がある場合は専門家に相談してください。</p>
+    </div>
+    <a href="../index.html" class="back-link">← TOPへ戻る</a>
+</main>
+<div style="text-align:center; margin:30px 0;">
+  <a href="https://siveweb.github.io/Utaun-site/index.html" target="_blank">
+    <img src="../logo/Utaun.png" alt="Utaunバナー" style="max-width:100%; height:auto;">
+  </a>
+</div>
+<footer>
+    <div class="sns-links">
+      <a href="https://bsky.app/profile/sive1992.bsky.social" target="_blank">
+        <img src="../SNSLogo/Bluesky.png" alt="Bluesky（正弦波くん【bot】）"><span>正弦波くん【bot】</span>
+      </a>
+      <a href="https://bsky.app/profile/sivelalala.bsky.social" target="_blank">
+        <img src="../SNSLogo/Bluesky.png" alt="Bluesky（【Sive】ららら）"><span>【Sive】ららら</span>
+      </a>
+      <a href="https://youtube.com/@sivelalala?si=R3yds_zverUXZmaX" target="_blank">
+        <img src="../SNSLogo/YouTube.png" alt="YouTube"><span>【Sive】ららら</span>
+      </a>
+      <a href="https://x.com/sivelalala?s=21" target="_blank">
+        <img src="../SNSLogo/X.png" alt="X"><span>【Sive】ららら</span>
+      </a>
+    </div>
+    <div style="max-width: 400px; margin: 0 auto 25px; padding: 20px; background: var(--container-bg); border: 1px solid var(--border-color); border-radius: 12px; text-align: left;">
+        <p style="margin: 0 0 5px 0; font-weight: bold; font-size: 0.9rem;">不具合・ご意見</p>
+        <form id="contact-form">
+            <input type="hidden" name="access_key" value="40b4c2ec-2bab-4f17-a213-b3a1901bbeb6">
+            <div style="margin-bottom: 10px;">
+                <textarea name="message" required="" rows="3" placeholder="例：封音ルイの音が途切れる、など" style="width: 100%; padding: 10px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 0.85rem; resize: vertical;"></textarea>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button type="submit" id="submit-btn" style="padding: 8px 20px; background: var(--text-color); color: var(--container-bg); border: none; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.8rem; transition: opacity 0.2s;">送信する</button>
+                <span id="form-result" style="font-size: 0.8rem; font-weight: bold;"></span>
+            </div>
+        </form>
+    </div>
+    <div style="margin-bottom: 20px;">
+        <a href="../sitemap.xml" style="color: var(--sub-text); font-size: 0.8rem;">サイトマップ</a>
+    </div>
+    <p style="font-size: 0.75rem; margin: 0; line-height: 1.2;">Powered by GitHub Pages</p>
+    <p style="letter-spacing: 1px; margin: 0; line-height: 1.8;">© 2026 【Sive】ららら All Rights Reserved.</p>
+</footer>
+<script>
+    (function syncTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        document.body.setAttribute('data-theme', currentTheme);
+    })();
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const formResult = document.getElementById('form-result');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            formResult.style.color = "var(--text-color)";
+            formResult.textContent = "送信中...";
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: json
+            })
+            .then(async (response) => {
+                let resJson = await response.json();
+                if (response.status == 200) {
+                    formResult.style.color = "#0CBFBD";
+                    formResult.textContent = "送信完了しました！";
+                    contactForm.reset();
+                } else {
+                    formResult.style.color = "#FC0254";
+                    formResult.textContent = "送信に失敗しました。";
+                }
+            })
+            .catch(error => {
+                formResult.style.color = "#FC0254";
+                formResult.textContent = "エラーが発生しました。";
+            });
+        });
+    }
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
+
+</body></html>
